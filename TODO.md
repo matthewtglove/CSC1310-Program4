@@ -1,0 +1,16 @@
+- [ ] Graph.cpp
+  - [ ] Code
+  - [ ] Comments
+- [ ] GraphMatrix.h
+  - [ ] Code
+  - [ ] Comments
+- [ ] GraphList.h
+  - [ ] Code
+  - [ ] Comments
+- [ ] Extra Credit
+  - [ ] Starting vertex (+5 points)
+    - [ ] Code
+    - [ ] Comments
+  - [ ] Acyclic graph (+5 points)
+    - [ ] Code
+    - [ ] Comments
