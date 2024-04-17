@@ -4,9 +4,9 @@
 - [ ] GraphMatrix.h
   - [ ] Code
   - [ ] Comments
-- [ ] GraphList.h
-  - [ ] Code
-  - [ ] Comments
+- [x] GraphList.h
+  - [x] Code
+  - [x] Comments
 - [ ] Extra Credit
   - [ ] Starting vertex (+5 points)
     - [ ] Code
