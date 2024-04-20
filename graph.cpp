@@ -12,6 +12,43 @@
 using namespace std;
 
 int main() {
+    cout << "Welcome to the graph program!\n"
+         << endl;
+
+    cout << "What is the name of the file you would like to import?" << endl;
+    string fileName;
+    getline(cin, fileName);
+    ifstream inFile;
+    inFile.open(fileName);
+    if (!inFile.good()) {
+        cout << "Could not open the file " << fileName << ". Ending program." << endl;
+        return 1;
+    }
+
+    // Reads in the number of verticies from the first line
+    int numVertices = 0;
+    cin >> numVertices;
+
+    GraphMatrix *graphMatrix = new GraphMatrix(numVertices);
+    GraphList *graphList = new GraphList(numVertices);
+
+    int fromNode;
+    int toNode;
+    // Stops reading the file at blank line or end of file
+    while (inFile >> fromNode >> toNode) {
+        graphMatrix->addEdge(fromNode, toNode);
+        graphList->addEdge(fromNode, toNode);
+    }
+
+    inFile.close();
+
+    cout << "Here is the Adjecency Matrix: " << endl;
+    graphMatrix->printGraph();
+
+    cout << "Here is the Adjecnecy List: " << endl;
+    graphList->printGraph();
+
+    // TODO: Implement Depth First Search algorithm using the stack. Reference example code
 
     return 0;
 }
