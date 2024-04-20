@@ -7,6 +7,7 @@
 
 #include "GraphList.h"
 #include "GraphMatrix.h"
+#include "Stack.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -16,6 +17,7 @@ int main() {
          << endl;
 
     cout << "What is the name of the file you would like to import?" << endl;
+    cout << "FILE: ";
     string fileName;
     getline(cin, fileName);
     ifstream inFile;
@@ -27,7 +29,7 @@ int main() {
 
     // Reads in the number of verticies from the first line
     int numVertices = 0;
-    cin >> numVertices;
+    inFile >> numVertices;
 
     GraphMatrix *graphMatrix = new GraphMatrix(numVertices);
     GraphList *graphList = new GraphList(numVertices);
@@ -35,6 +37,7 @@ int main() {
     int fromNode;
     int toNode;
     // Stops reading the file at blank line or end of file
+
     while (inFile >> fromNode >> toNode) {
         graphMatrix->addEdge(fromNode, toNode);
         graphList->addEdge(fromNode, toNode);
@@ -42,13 +45,37 @@ int main() {
 
     inFile.close();
 
+    cout << endl;
     cout << "Here is the Adjecency Matrix: " << endl;
     graphMatrix->printGraph();
-
+    cout << endl;
     cout << "Here is the Adjecnecy List: " << endl;
     graphList->printGraph();
+    cout << endl;
 
-    // TODO: Implement Depth First Search algorithm using the stack. Reference example code
+    // FIXME: HELP!
+    Stack<int> *visitedStack = new Stack<int>;
+    bool hasBeenVisited[numVertices];
+    for (int i = 0; i < numVertices; i++) {
+        hasBeenVisited[i] = false;
+    }
+
+    visitedStack->push(0);
+    hasBeenVisited[0] = true;
+
+    cout << "Depth First Search: " << endl;
+    while (!visitedStack->isEmpty()) {
+        int currentVertex;
+        visitedStack->pop(currentVertex);
+        cout << "Visited: " << currentVertex << endl;
+
+        for (int i = 0; i < numVertices; i++) {
+            if (graphMatrix->isThereAnEdge(currentVertex, i) && !hasBeenVisited[i]) {
+                visitedStack->push(i);
+                hasBeenVisited[i] = true;
+            }
+        }
+    }
 
     return 0;
 }

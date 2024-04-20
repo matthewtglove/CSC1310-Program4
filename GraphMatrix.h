@@ -53,7 +53,7 @@ public:
 
             // Then initialize everything to 0.
             for (int j = 0; j < numVertices; j++) {
-                vertexMatrix[i][j] = 0;
+                (vertexMatrix[i])[j] = 0;
             }
         }
     }
@@ -80,7 +80,7 @@ public:
     void printGraph() {
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
-                cout << vertexMatrix[i][j] << " ";
+                cout << vertexMatrix[i][j] << "  ";
             }
             cout << endl;
         }
