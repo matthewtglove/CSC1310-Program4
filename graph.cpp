@@ -20,13 +20,13 @@ int main() {
     cout << "FILE: ";
 
     string fileName;
-    
+
     getline(cin, fileName); // Read in user input for a file
 
     ifstream inFile;
-    inFile.open(fileName);  // Attempt to open the file
+    inFile.open(fileName); // Attempt to open the file
 
-    if (!inFile.good()) {   // If the file cant be opened tell the user
+    if (!inFile.good()) { // If the file cant be opened tell the user
         cout << "Could not open the file " << fileName << ". Ending program." << endl;
         return 1;
     }
@@ -60,43 +60,39 @@ int main() {
     graphList->printGraph();
     cout << endl;
 
-    // FIXME: HELP!
-    Stack<int> *visitedStack = new Stack<int>;
-    
+    // * Depth First Search *
+    Stack<int> *adjacentStack = new Stack<int>;
+    // hasBeenVisited includes items that have been output and have been put into the adjacentStack
     bool hasBeenVisited[numVertices];
     for (int i = 0; i < numVertices; i++) {
         hasBeenVisited[i] = false;
     }
 
-    visitedStack->push(0);
-    hasBeenVisited[0] = true;
+    cout << "Now traversing & printing graph vertices with DFS:\n"
+         << endl;
 
-    cout << "Now traversing & printing graph vertices with DFS.\n" << endl;
-    while (!visitedStack->isEmpty()) {
-        int currentVertex;
-        visitedStack->pop(currentVertex);
+    // Adds 0 to the stack and marks it as visited
+    adjacentStack->push(0);
+    hasBeenVisited[0] = true;
+    int currentVertex;
+
+    while (!adjacentStack->isEmpty()) {
+        // Note: The next item in the adjecentStack would be 0 in the first loop
+        adjacentStack->pop(currentVertex);
+        // Prints out the visited item
         cout << currentVertex << "\t";
 
-        for (int i = 0; i < numVertices; i++) {
+        for (int i = numVertices - 1; i > 0; i--) {
             if (graphMatrix->isThereAnEdge(currentVertex, i) && !hasBeenVisited[i]) {
-                visitedStack->push(i);
+                adjacentStack->push(i);
                 hasBeenVisited[i] = true;
-
-                
-                // FIXME: John attempted to add the code and thought he was on to something but was bested by the machine and came up empty.
-                //        this day man lost to the machine. All hail the AI overlords; the age of human dominion is over.
-                // visitedStack->pop(i);
-                // cout << i << "\t";
-
-                cout << "\nhere is currentVertex " << currentVertex << " Here is i " << i << endl;
-                currentVertex = i; // TODO: To Matthew: I thought this line had some promise but idk, i have an idea of how we are supposed to do it 
-                                   //                   but i have no idea how to implement it. Lets try and figure it out and if we can't get it working
-                                   //                   then we may have to reach out to Master Vandergriff because i spent more time on this than I should have and 
-                                   //                   Didn't really feel like i got anywhere with it. 
             }
         }
     }
+    cout << endl;
 
+    cout << endl
+         << "Thank you for coming to my TedTalk." << endl;
 
     return 0;
 }
