@@ -70,7 +70,7 @@ class GraphList
             ListNode* newNode = new ListNode; // Create a new list node
             newNode->value = vertex2; // Set its value to the second vertex since the array index will point to this item
             newNode->next = nullptr;
-            numEdges++; // TODO: Ask Matthew if he found a use for this variable in his code
+            numEdges++;
         
             ListNode* currNode = headArray[vertex1]; // Set current node to the index of the array which will be the first element within the list
         
