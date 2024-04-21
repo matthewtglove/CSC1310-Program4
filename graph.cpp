@@ -60,24 +60,25 @@ int main() {
     graphList->printGraph();
     cout << endl;
 
-    // * Depth First Search *
+    // * Depth First Search * //
 
-    int start;
-    int edgeCount;
+    // Choosing starting vertex **attempt** - Was not printing in the exact same order as the sample output (with extra credit)
 
-    for (int i = 0; i < numVertices; i++) {
-        edgeCount = 0;
-        for (int j = 0; j < numVertices; j++) {
-            if (graphMatrix->isThereAnEdge(j, i)) {
-                edgeCount++;
-            }
-        }
+    // int start;
+    // int edgeCount;
+    // for (int i = 0; i < numVertices; i++) {
+    //     edgeCount = 0;
+    //     for (int j = 0; j < numVertices; j++) {
+    //         if (graphMatrix->isThereAnEdge(j, i)) {
+    //             edgeCount++;
+    //         }
+    //     }
 
-        if (edgeCount == 0) {
-            start = i;
-            break;
-        }
-    }
+    //     if (edgeCount == 0) {
+    //         start = i;
+    //         break;
+    //     }
+    // }
 
     Stack<int> *adjacentStack = new Stack<int>;
     // hasBeenVisited includes items that have been output and have been put into the adjacentStack
@@ -90,8 +91,8 @@ int main() {
          << endl;
 
     // Adds 0 to the stack and marks it as visited
-    adjacentStack->push(start);
-    hasBeenVisited[start] = true;
+    adjacentStack->push(0);
+    hasBeenVisited[0] = true;
     int currentVertex;
 
     while (!adjacentStack->isEmpty()) {
