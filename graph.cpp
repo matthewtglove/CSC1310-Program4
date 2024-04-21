@@ -61,6 +61,24 @@ int main() {
     cout << endl;
 
     // * Depth First Search *
+
+    int start;
+    int edgeCount;
+
+    for (int i = 0; i < numVertices; i++) {
+        edgeCount = 0;
+        for (int j = 0; j < numVertices; j++) {
+            if (graphMatrix->isThereAnEdge(j, i)) {
+                edgeCount++;
+            }
+        }
+
+        if (edgeCount == 0) {
+            start = i;
+            break;
+        }
+    }
+
     Stack<int> *adjacentStack = new Stack<int>;
     // hasBeenVisited includes items that have been output and have been put into the adjacentStack
     bool hasBeenVisited[numVertices];
@@ -72,8 +90,8 @@ int main() {
          << endl;
 
     // Adds 0 to the stack and marks it as visited
-    adjacentStack->push(0);
-    hasBeenVisited[0] = true;
+    adjacentStack->push(start);
+    hasBeenVisited[start] = true;
     int currentVertex;
 
     while (!adjacentStack->isEmpty()) {
@@ -82,7 +100,7 @@ int main() {
         // Prints out the visited item
         cout << currentVertex << "\t";
 
-        for (int i = numVertices - 1; i > 0; i--) {
+        for (int i = numVertices - 1; i >= 0; i--) {
             if (graphMatrix->isThereAnEdge(currentVertex, i) && !hasBeenVisited[i]) {
                 adjacentStack->push(i);
                 hasBeenVisited[i] = true;
